@@ -11,8 +11,11 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
 
-  $scope.shows = Shows.all();
-  })
+  $scope.shows = [];
+    Shows.all().then(function(apiShows) {
+      $scope.shows = apiShows;
+    });
+})
 
 .controller('ShowDetailCtrl', function($scope, $stateParams, Shows) {
   $scope.show = Shows.get($stateParams.showId);
